@@ -277,10 +277,32 @@
             });
 
             // 行政界重心ソース
-            map.addSource('town-hall', {
+            map.addSource('boundary-centroid', {
                 'type': 'geojson',
                 'data': './pse_admbnda_adm2_pamop_20210806_centroid.geojson',
                 attribution: '<a href="https://data.humdata.org/dataset/cod-ab-pse">OCHA</a>'
+            });
+
+            // 行政界ラベルレイヤ
+            map.addLayer({
+                'id': 'boundary-centroid-labels',
+                'type': 'symbol',
+                'source': 'boundary-centroid',
+                minzoom: 1,
+                maxzoom: 23,
+                'layout': {
+                    'text-field': ['get', 'admin2Name_en'],
+                    'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+                    'text-size': 16,
+                    'text-anchor': 'center',
+                    'text-justify': 'center',
+                    'text-offset': [0, -1.0],
+                },
+                'paint': {
+                    'text-color': 'rgba(0, 0, 0, 1)',
+                    'text-halo-color': 'rgba(255, 255, 255, 1)',
+                    'text-halo-width': 2
+                }
             });
 
         });
